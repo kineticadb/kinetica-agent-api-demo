@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "kinetica_agent": "./kinetica_agent_api_demo/demo_agent.py:profile_agent"
+  },
+  "env": ".env"
+}

@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "kinetica-agent-api-demo"
+version = "0.1.0"
+description = "Kinetica Demo for LangSmith API Server"
+readme = "README.md"
+authors = ["Chad Juliano <cjuliano@kinetica.com>"]
+homepage = "https://kinetica.com"
+#documentation = "https://docs.kinetica.com/7.1/sql-gpt/"
+#repository = "https://bitbucket.org/gisfederal/sqlassist/src/master/"
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+package-mode = true
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain-community = "^0.3.17"
+langgraph-cli = {version = "^0.1.73", extras = ["inmem"]}
+gpudb = {extras=["dataframe"], version="^7.2.2.6"}
+
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+faker = "^36.1.0"
+pytest = "^8.3.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(levelname)s [%(name)s] %(message)s"
+testpaths = [ "tests" ]
+filterwarnings = [
+    "ignore::DeprecationWarning:gpudb",
+    "ignore::FutureWarning",
+]
