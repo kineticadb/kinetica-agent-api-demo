@@ -5,8 +5,7 @@ description = "Kinetica Demo for LangSmith API Server"
 readme = "README.md"
 authors = ["Chad Juliano <cjuliano@kinetica.com>"]
 homepage = "https://kinetica.com"
-#documentation = "https://docs.kinetica.com/7.1/sql-gpt/"
-#repository = "https://bitbucket.org/gisfederal/sqlassist/src/master/"
+repository = "https://github.com/kineticadb/kinetica-agent-api-demo"
 classifiers = [
     "Programming Language :: Python :: 3",
 ]
