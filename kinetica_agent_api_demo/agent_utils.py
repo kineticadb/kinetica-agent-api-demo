@@ -3,7 +3,7 @@
 from gpudb import GPUdb
 from typing import Any, List
 from pydantic import ConfigDict, Field
-
+import logging
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers.transform import BaseOutputParser
@@ -16,6 +16,7 @@ from langgraph.prebuilt.chat_agent_executor import AgentState
 
 from langchain_community.chat_models.kinetica import ChatKinetica, KineticaSqlResponse
 
+LOG = logging.getLogger(__name__)
 
 class KineticaJsonOutputParser(BaseOutputParser[str]):
 
@@ -29,14 +30,19 @@ class KineticaJsonOutputParser(BaseOutputParser[str]):
         arbitrary_types_allowed=True,
     )
 
-    def parse(self, text: str) -> KineticaSqlResponse:
+    def parse(self, text: str) -> str:
+        LOG.info("KineticaJsonOutputParser SQL: %s", text)
+
+        # execute the SQL
         df = self.kdbc.to_df(text)
+
+        # convert to JSON
         json_str = df.head(self.max_results).to_json(orient='records', indent=2)
         return json_str
 
     def parse_result(
         self, result: List[Generation], *, partial: bool = False
-    ) -> KineticaSqlResponse:
+    ) -> str:
         return self.parse(result[0].text)
 
     @property

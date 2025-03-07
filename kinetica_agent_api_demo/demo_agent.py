@@ -4,9 +4,7 @@ from typing import Any
 from gpudb import GPUdb
 
 from kinetica_agent_api_demo.agent_utils import create_kinetica_agent
-
-# Kinetica SQL context (must exist)
-kinetica_ctx = "test.test_profiles_ctx"
+from kinetica_agent_api_demo.demo_config import kinetica_ctx
 
 agent_name = "profile_expert"
 

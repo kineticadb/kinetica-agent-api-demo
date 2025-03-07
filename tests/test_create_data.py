@@ -4,17 +4,9 @@ import pandas as pd
 from faker import Faker
 from gpudb import GPUdb, GPUdbTable
 
+from kinetica_agent_api_demo.demo_config import kinetica_ctx, table_name
+
 LOG = logging.getLogger(__name__)
-
-# This schema must exist
-kinetica_schema = "test"
-
-# Test table we will create
-table_name = f"{kinetica_schema}.user_profiles"
-
-# LLM Context we will create
-kinetica_ctx = f"{kinetica_schema}.test_profiles_ctx"
-
 
 def test_create_sql_context():
     kdbc = GPUdb.get_connection()
